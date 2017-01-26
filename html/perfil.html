@@ -1,10 +1,11 @@
+
 <section class="container-profile-info">
     <div class="container-profile-info-basic">
-        <img src="/img/me.jpg" class="profile-picture-me" />
-        <h2 class="container-profile-name">Wellerson Roberto</h2>
+        <img src="/img/me.svg" class="profile-picture-me" />
     </div>
 
     <div class="container-profile-info-detailed">
+        <h2 class="container-profile-name">Wellerson Roberto</h2>
         <p>Idade: 21</p>
         <p>Cidade: Rio de Janeiro </p>
         <p>Programador Web.</p>
@@ -14,18 +15,8 @@
 
 <section class="container-profile-skills">
     <h2>Habilidades</h2>
-    <div class="container-master-skills">
-        <div class="container-master-skill-bar">
-            <span class="title-skill">HTML 5</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-70"><span>70%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">CSS</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-90"><span>90%</span></div>
-            </div>
+    <div id="container-master-skills" class="container-master-skills">
+       <!-- 
         </div>
         <div class="container-master-skill-bar">
             <span class="title-skill">JavaScript</span>
@@ -33,53 +24,102 @@
                 <div class="container-skill-content skill-85"><span>85%</span></div>
             </div>
         </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">C#</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-70"><span>70%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">ASP.NET MVC</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-80"><span>80%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">Node.js</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-60"><span>60%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">MongoDB</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-60"><span>60%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">PostgreSQL</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-70"><span>70%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">jQuery</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-90"><span>90%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">Angular 2</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-50"><span>50%</span></div>
-            </div>
-        </div>
-        <div class="container-master-skill-bar">
-            <span class="title-skill">NativeScript</span>
-            <div class="container-skill-bar">
-                <div class="container-skill-content skill-50"><span>50%</span></div>
-            </div>
-        </div>
+       -->
     </div>
 </section>
+
+<script>
+    var Perfil = function(){
+        var Self = this;
+
+        var Skills =  [{
+            name: 'HTML 5',
+            perc: 70,
+            background: '-95px -95px'
+        },{
+            name: 'CSS',
+            perc: 90,
+            background: '-5px -95px'
+        },
+        {
+            name: 'JavaScript',
+            perc: 85,
+            background: '-185px -95px'
+        },
+        {
+            name: 'C#',
+            perc: 80,
+            background: '-185px -5px'
+        },
+        {
+            name: 'ASP.NET MVC',
+            perc: 70,
+            img: 'img/aspnetmvc.png',
+            background: '-95px -5px'
+        },
+        {
+            name: 'Node.js',
+            perc: 60,
+            img: 'img/node.png',
+            background: '-275px -5px'
+        },
+        {
+            name: 'MongoDB',
+            perc: 60,
+            background: '-95px -185px'
+        },
+        {
+            name: 'PostgreSQL',
+            perc: 70,
+            img: 'img/postgresql.png',
+            background: '-275px -95px'
+        },
+        {
+            name: 'jQuery',
+            perc: 90,
+            background: '-5px -185px'
+        },
+        {
+            name: 'Angular 2',
+            perc: 50,
+            img: 'img/angular.png',
+            background: '-5px -5px'
+        },
+        {
+            name: 'NativeScript',
+            perc: 40,
+            background: '-185px -185px'
+        }];
+
+        this.htmlHelper = {
+            buildItem: function(item){
+                var html = '<div class="container-skills-individual">' +
+                '<span class="name">' + item.name + '</span>' +
+                '<div class="container-perc">' +
+                '<div class="perc-bar skill-' + item.perc + '"></div>' +
+                '<span class="perc">' + item.perc + '%</span></div>' +
+                '<div class="img" style="background-position: ' + item.background + '"></div></div>';
+
+                return html;
+            },
+            buildItens: function(itens){
+                var html = '';
+
+                for(var i=0; i<itens.length;i++){
+                    html += Self.htmlHelper.buildItem(itens[i]);
+                }
+
+                return html;
+            }
+        };
+
+        this.init = function(){
+            var html = Self.htmlHelper.buildItens(Skills);
+            $('#container-master-skills').html(html);
+        };
+
+        this.init();
+    };
+
+    var perfil = new Perfil();
+</script>
